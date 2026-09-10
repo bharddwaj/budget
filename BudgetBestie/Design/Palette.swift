@@ -51,28 +51,12 @@ enum Palette {
     /// Calendar day broken by an off-limits expense.
     static let spendBroken = dynamic(light: 0xEB8A90, dark: 0xC9666D)
 
-    static func forKind(_ kind: EnvelopeKindColorRole) -> Color {
-        switch kind {
-        case .variable: return variable
-        case .fixed: return fixed
-        case .savings: return savings
-        }
-    }
-
     /// Builds a colour that resolves per interface style at draw time.
     private static func dynamic(light: UInt32, dark: UInt32) -> Color {
         Color(uiColor: UIColor { traits in
             UIColor(hex: traits.userInterfaceStyle == .dark ? dark : light)
         })
     }
-}
-
-/// Mirrors `BudgetKit.EnvelopeKind` without importing it, so the design layer
-/// stays independent of the domain layer.
-enum EnvelopeKindColorRole {
-    case variable
-    case fixed
-    case savings
 }
 
 private extension UIColor {
