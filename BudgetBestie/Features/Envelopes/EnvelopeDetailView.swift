@@ -94,7 +94,7 @@ struct EnvelopeDetailView: View {
                     .foregroundStyle(Palette.textSecondary)
             } else if let stuffed = stuffedThisCycle {
                 ProgressTrack(
-                    progress: envelope.spentFraction(in: cycle),
+                    progress: envelope.remainingFraction(in: cycle),
                     tint: envelope.kind.color,
                     height: 10
                 )

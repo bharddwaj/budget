@@ -106,12 +106,12 @@ final class Envelope {
             .total
     }
 
-    /// 0...1 for the row's progress bar: how much of what was stuffed is gone.
-    func spentFraction(in cycle: BudgetCycle?) -> Double {
+    /// 0...1 for the row's progress bar: how much of what was stuffed is still
+    /// here, so a full bar is a full envelope and it drains as you spend.
+    func remainingFraction(in cycle: BudgetCycle?) -> Double {
         let stuffedAmount = stuffed(in: cycle)
-        guard stuffedAmount.isPositive else { return balance.isPositive ? 0 : 1 }
-        let spentAmount = (stuffedAmount - balance).clampedToZero
-        return spentAmount.doubleValue / stuffedAmount.doubleValue
+        guard stuffedAmount.isPositive else { return balance.isPositive ? 1 : 0 }
+        return min(1, balance.clampedToZero.doubleValue / stuffedAmount.doubleValue)
     }
 
     /// Progress toward a savings goal, or nil for other envelope types.

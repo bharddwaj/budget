@@ -25,6 +25,9 @@ struct DonutChart: View {
     var centerAmount: Money
     var diameter: CGFloat = 190
 
+    /// How much of the radius is hole; the ring is the rest.
+    private static let innerRadiusRatio: CGFloat = 0.68
+
     @Environment(\.currencyFormat) private var format
 
     private var positiveSlices: [DonutSlice] {
@@ -35,12 +38,12 @@ struct DonutChart: View {
         ZStack {
             if positiveSlices.isEmpty {
                 Circle()
-                    .strokeBorder(Palette.surfaceMuted, lineWidth: diameter * 0.19)
+                    .strokeBorder(Palette.surfaceMuted, lineWidth: diameter * (1 - Self.innerRadiusRatio) / 2)
             } else {
                 Chart(positiveSlices) { slice in
                     SectorMark(
                         angle: .value("Amount", slice.amount.doubleValue),
-                        innerRadius: .ratio(0.68),
+                        innerRadius: .ratio(Self.innerRadiusRatio),
                         angularInset: 1.5
                     )
                     .cornerRadius(4)
@@ -54,7 +57,12 @@ struct DonutChart: View {
                     .font(Theme.Font.caption)
                     .foregroundStyle(Palette.textSecondary)
                 AmountText(amount: centerAmount, font: Theme.Font.amount)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
             }
+            // Keep the label inside the hole: a five-figure total at full size
+            // is wider than the ring's inner diameter.
+            .frame(width: diameter * Self.innerRadiusRatio * 0.9)
         }
         .frame(width: diameter, height: diameter)
         .accessibilityElement(children: .ignore)

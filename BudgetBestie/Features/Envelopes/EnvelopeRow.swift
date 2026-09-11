@@ -2,7 +2,7 @@ import SwiftUI
 import BudgetKit
 
 /// One envelope in the home list: emoji, name, what's left, and a bar showing
-/// how much of this budget's stuffing has been spent.
+/// how much of this budget's stuffing is still in the envelope.
 struct EnvelopeRow: View {
     var envelope: Envelope
     var cycle: BudgetCycle?
@@ -46,7 +46,7 @@ struct EnvelopeRow: View {
         case .savings:
             return envelope.goalProgress ?? 0
         case .variable, .fixed:
-            return envelope.spentFraction(in: cycle)
+            return envelope.remainingFraction(in: cycle)
         }
     }
 
