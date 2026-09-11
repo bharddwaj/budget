@@ -5,6 +5,7 @@ import SwiftData
 /// recap. Every sheet the app presents is owned here so any tab can open the
 /// add-transaction keypad or the budget flow.
 struct MainTabView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var selection: Tab = .home
     @State private var route = AppRoute()
 
@@ -52,6 +53,14 @@ struct MainTabView: View {
         }
         .sheet(isPresented: $route.isShowingSettings) {
             SettingsView()
+        }
+        .task {
+            // Fresh from onboarding (or after "start fresh") there are envelopes
+            // but no budget yet, and nothing else makes sense until there is one.
+            let store = BudgetStore(context: modelContext)
+            if store.activeCycle() == nil, !store.envelopes().isEmpty {
+                route.isBudgeting = true
+            }
         }
     }
 }

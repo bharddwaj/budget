@@ -13,7 +13,6 @@ struct OnboardingFlow: View {
     @State private var selectedStarters: Set<String> = Set(StarterEnvelope.defaults.map(\.name))
     @State private var totalCash: Money = .zero
     @State private var isEditingCash = false
-    @State private var isBudgeting = false
 
     private let pageCount = 4
 
@@ -54,9 +53,6 @@ struct OnboardingFlow: View {
                 caption: "Every bank account, plus any cash.",
                 amount: $totalCash
             )
-        }
-        .fullScreenCover(isPresented: $isBudgeting) {
-            BudgetFlowView()
         }
     }
 
@@ -226,31 +222,22 @@ struct OnboardingFlow: View {
         }
     }
 
-    /// Creates the chosen envelopes, marks onboarding done, and opens the budget
-    /// flow so the first stuffing happens immediately.
+    /// Creates the chosen envelopes and marks onboarding done. Saving that swaps
+    /// this view out for the tab shell, which opens the first budget itself.
     private func finish() {
         let store = BudgetStore(context: modelContext)
 
         for starter in StarterEnvelope.defaults where selectedStarters.contains(starter.name) {
-            let envelope = store.createEnvelope(
-                emoji: starter.emoji,
-                name: starter.name,
-                kind: starter.kind
-            )
-            // The first budget's "you have" total starts from envelope balances,
-            // so seed one envelope with the cash the user just entered and let
-            // them redistribute it in the flow.
-            if starter.name == StarterEnvelope.defaults.first?.name {
-                envelope.balance = totalCash
-            }
+            store.createEnvelope(emoji: starter.emoji, name: starter.name, kind: starter.kind)
         }
 
         let settings = store.settings()
         settings.hasOnboarded = true
+        settings.preferredFrequency = frequency
+        // Every envelope starts empty; this is what the first budget stuffs.
+        settings.startingCash = totalCash
         settings.noSpendTrackingStart = Date()
         store.save()
-
-        isBudgeting = true
     }
 }
 

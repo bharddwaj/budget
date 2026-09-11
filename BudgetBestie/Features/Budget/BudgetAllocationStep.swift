@@ -10,31 +10,34 @@ struct BudgetAllocationStep: View {
     @Environment(\.currencyFormat) private var format
 
     var body: some View {
-        VStack(spacing: Theme.Spacing.medium) {
-            remainingHeader
-            envelopeStrip
+        // Header, strip, card, display and keypad add up to more than a small
+        // screen, so the step scrolls rather than spilling under the toolbar.
+        ScrollView {
+            VStack(spacing: Theme.Spacing.medium) {
+                remainingHeader
+                envelopeStrip
 
-            if let envelope = model.currentEnvelope {
-                envelopeCard(envelope)
+                if let envelope = model.currentEnvelope {
+                    envelopeCard(envelope)
 
-                KeypadDisplay(engine: engine, caption: model.rationale(for: envelope))
+                    KeypadDisplay(engine: engine, caption: model.rationale(for: envelope))
 
-                BudgetKeypad(engine: $engine, suggested: model.suggestedTarget(for: envelope))
+                    BudgetKeypad(engine: $engine, suggested: model.suggestedTarget(for: envelope))
 
-                Spacer(minLength: 0)
-
-                PillButton(title: isLastEnvelope ? "review" : "next") {
-                    model.commitCurrentAndAdvance(target: engine.commit())
+                    PillButton(title: isLastEnvelope ? "review" : "next") {
+                        model.commitCurrentAndAdvance(target: engine.commit())
+                    }
+                    PillButton(title: "previous", style: .quiet) {
+                        stepBack()
+                    }
+                } else {
+                    noEnvelopes
                 }
-                PillButton(title: "previous", style: .quiet) {
-                    stepBack()
-                }
-            } else {
-                noEnvelopes
             }
+            .padding(.horizontal, Theme.Spacing.screenMargin)
+            .padding(.bottom, Theme.Spacing.medium)
         }
-        .padding(.horizontal, Theme.Spacing.screenMargin)
-        .padding(.bottom, Theme.Spacing.medium)
+        .scrollBounceBehavior(.basedOnSize)
         .background(Palette.background)
         .onAppear { syncEngine() }
         .onChange(of: model.allocationIndex) { _, _ in syncEngine() }

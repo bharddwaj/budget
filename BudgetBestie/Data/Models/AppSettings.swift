@@ -11,6 +11,12 @@ final class AppSettings {
     /// Fixed identifier so `fetchOrCreate` always finds the same row.
     var id: UUID = AppSettings.singletonID
     var hasOnboarded: Bool = false
+    /// The pay rhythm chosen during onboarding; the first budget starts from it
+    /// and later budgets follow the previous cycle instead.
+    var preferredFrequencyRaw: String = BudgetFrequency.biweekly.rawValue
+    /// Cash entered during onboarding, waiting to be stuffed by the first
+    /// budget. Cleared once that budget is created.
+    var startingCashMinorUnits: Int = 0
 
     // Appearance
     var themeRaw: String = AppThemePreference.system.rawValue
@@ -45,6 +51,16 @@ final class AppSettings {
     static let singletonID = UUID(uuidString: "00000000-0000-0000-0000-0000000000B1")!
 
     // MARK: - Typed accessors
+
+    var startingCash: Money {
+        get { Money(minorUnits: startingCashMinorUnits) }
+        set { startingCashMinorUnits = newValue.minorUnits }
+    }
+
+    var preferredFrequency: BudgetFrequency {
+        get { BudgetFrequency(rawValue: preferredFrequencyRaw) ?? .biweekly }
+        set { preferredFrequencyRaw = newValue.rawValue }
+    }
 
     var theme: AppThemePreference {
         get { AppThemePreference(rawValue: themeRaw) ?? .system }
