@@ -51,17 +51,19 @@ final class BudgetFlowModel {
         self.startDate = today
 
         let previous = store.activeCycle()
+        let settings = store.settings()
+        let frequency = previous?.frequency ?? settings.preferredFrequency
         self.previousCycle = previous
-        self.frequency = previous?.frequency ?? .biweekly
-        self.nextBudgetDate = store.calendar.nextBudgetDate(
-            after: today,
-            frequency: previous?.frequency ?? .biweekly
-        )
+        self.frequency = frequency
+        self.nextBudgetDate = store.calendar.nextBudgetDate(after: today, frequency: frequency)
 
-        self.envelopes = store.envelopes()
+        let envelopes = store.envelopes()
+        self.envelopes = envelopes
         // What you actually have is what's in the envelopes right now, which the
-        // user can correct on the first screen if their bank says otherwise.
-        self.totalCash = envelopes.map(\.balance).total
+        // user can correct on the first screen if their bank says otherwise. The
+        // very first budget also has the cash entered during onboarding to place.
+        let inEnvelopes = envelopes.map(\.balance).total
+        self.totalCash = previous == nil ? inEnvelopes + settings.startingCash : inEnvelopes
 
         for envelope in envelopes {
             targets[envelope.id] = envelope.balance
@@ -196,6 +198,7 @@ final class BudgetFlowModel {
             nextBudgetDate: nextBudgetDate,
             allocations: entries
         )
+        store.settings().startingCash = .zero
     }
 
     // MARK: - Helpers

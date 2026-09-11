@@ -42,7 +42,7 @@ final class KeypadEngineTests: XCTestCase {
         XCTAssertEqual(engine.value, .zero)
 
         engine.press(.digit(1))
-        engine.press(.doubleZero)
+        engine.press(.digit(0))
         engine.press(.doubleZero)
         XCTAssertEqual(engine.value, Money(major: 10))
 
@@ -55,7 +55,7 @@ final class KeypadEngineTests: XCTestCase {
         var engine = KeypadEngine(value: Money(major: 10))
         engine.press(.subtract)
         engine.press(.digit(2))
-        engine.press(.doubleZero)
+        engine.press(.digit(0))
         engine.press(.doubleZero)
         engine.press(.equals)
         XCTAssertEqual(engine.value, Money(major: -10))
@@ -65,7 +65,7 @@ final class KeypadEngineTests: XCTestCase {
         var engine = KeypadEngine(value: Money(major: 10))
         engine.press(.add)
         engine.press(.digit(5))
-        engine.press(.doubleZero)
+        engine.press(.digit(0))
         engine.press(.doubleZero)
         engine.press(.add)
         // The first + is settled the moment the second is pressed.
@@ -90,7 +90,7 @@ final class KeypadEngineTests: XCTestCase {
         var engine = KeypadEngine(value: Money(major: 40))
         engine.press(.add)
         engine.press(.digit(1))
-        engine.press(.doubleZero)
+        engine.press(.digit(0))
         engine.press(.doubleZero)
         XCTAssertEqual(engine.commit(), Money(major: 50))
     }
