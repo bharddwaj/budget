@@ -126,9 +126,12 @@ struct SettingsView: View {
         .tint(Palette.accent)
         .scrollContentBackground(.hidden)
         .background(Palette.background)
-        // Any settings change can affect what is scheduled, so rebuild on each.
         .onChange(of: settingsFingerprint(settings)) { _, _ in
             save()
+        }
+        // Only reminder changes touch notifications, so flipping the theme or
+        // currency never triggers the permission prompt.
+        .onChange(of: reminderFingerprint(settings)) { _, _ in
             Task { await rescheduleReminders(settings) }
         }
         .confirmationDialog(
@@ -149,21 +152,28 @@ struct SettingsView: View {
 
     // MARK: - Behaviour
 
-    /// One value that changes whenever anything schedule-affecting changes, so a
-    /// single `onChange` can cover the whole form.
+    /// One value that changes whenever anything on the form changes, so a
+    /// single `onChange` can save the whole thing.
     private func settingsFingerprint(_ settings: AppSettings) -> String {
+        [
+            reminderFingerprint(settings),
+            settings.themeRaw,
+            settings.currencySymbol,
+            settings.currencySymbolIsLeading.description,
+            String(settings.currencyDecimals),
+            settings.faceIDEnabled.description
+        ].joined(separator: "|")
+    }
+
+    /// The subset that affects what is scheduled.
+    private func reminderFingerprint(_ settings: AppSettings) -> String {
         [
             settings.dailyReminderEnabled.description,
             String(settings.dailyReminderHour),
             settings.transactionReminderEnabled.description,
             settings.budgetReminderEnabled.description,
             settings.billReminderEnabled.description,
-            String(settings.billReminderLeadDays),
-            settings.themeRaw,
-            settings.currencySymbol,
-            settings.currencySymbolIsLeading.description,
-            String(settings.currencyDecimals),
-            settings.faceIDEnabled.description
+            String(settings.billReminderLeadDays)
         ].joined(separator: "|")
     }
 

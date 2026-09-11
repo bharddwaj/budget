@@ -6,6 +6,7 @@ import BudgetKit
 /// whole tree: their theme, their currency formatting, and the Face ID gate.
 struct RootView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @Query private var settingsRows: [AppSettings]
 
     @State private var isUnlocked = false
@@ -28,6 +29,13 @@ struct RootView: View {
             guard !hasPreparedStore else { return }
             hasPreparedStore = true
             BudgetStore(context: modelContext).settings()
+        }
+        // Lock again whenever the app leaves the foreground, so coming back from
+        // the app switcher asks for Face ID just like a cold launch.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .background {
+                isUnlocked = false
+            }
         }
     }
 
