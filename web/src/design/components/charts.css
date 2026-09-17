@@ -25,3 +25,9 @@
 .legend__row { display: flex; align-items: center; gap: var(--space-small); }
 .legend__dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
 .legend__label { font: var(--font-callout); color: var(--color-text-secondary); }
+
+/* InOutChart */
+.inout { width: 100%; }
+.inout--empty { display: flex; align-items: center; justify-content: center; }
+.inout__svg { display: block; width: 100%; overflow: visible; }
+.inout__tick { font: 500 11px var(--font-family); fill: var(--color-text-secondary); }
