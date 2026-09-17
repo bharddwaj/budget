@@ -1,0 +1,16 @@
+.banner { display: flex; align-items: center; gap: var(--space-medium); width: 100%; text-align: left; }
+.banner__emoji { font-size: 30px; }
+.banner__title { font: var(--font-headline); color: var(--color-text-primary); }
+.banner__subtitle { font: var(--font-caption); color: var(--color-text-secondary); }
+.banner .icon { margin-left: auto; color: var(--color-accent); }
+
+.summary { display: flex; flex-direction: column; align-items: center; gap: var(--space-large); }
+.summary__next { display: flex; justify-content: space-between; width: 100%; font: var(--font-callout); }
+
+.bills__row { display: flex; align-items: center; gap: var(--space-small); padding: 4px 0; }
+.bills__name { font: var(--font-callout); color: var(--color-text-primary); }
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: var(--space-medium); padding: var(--space-section) 0; text-align: center; }
+.empty__emoji { font-size: 52px; }
+.empty__title { margin: 0; font: var(--font-title); color: var(--color-text-primary); }
+.empty__body { margin: 0; font: var(--font-callout); color: var(--color-text-secondary); }

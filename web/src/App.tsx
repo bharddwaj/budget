@@ -1,8 +1,11 @@
+import { RouterProvider } from 'react-router'
+import { useSnapshot } from './app/AppEnvironment'
+import { router } from './app/router'
+import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
+
+/** Decides what the app shows at launch: onboarding or the tab shell. */
 export default function App() {
-  return (
-    <div style={{ padding: 'var(--space-screen-margin)' }}>
-      <h1 className="t-title">Budget Bestie</h1>
-      <p className="t-callout c-secondary">Web version coming together. Build {__APP_VERSION__}.</p>
-    </div>
-  )
+  const { settings } = useSnapshot()
+  if (!settings.hasOnboarded) return <OnboardingFlow />
+  return <RouterProvider router={router} />
 }

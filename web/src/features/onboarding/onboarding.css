@@ -1,0 +1,64 @@
+.onboarding {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-background);
+}
+.onboarding__progress {
+  flex: none;
+  padding: calc(var(--safe-top) + var(--space-medium)) var(--space-screen-margin) 0;
+}
+.onboarding__page {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.onboarding__page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-large);
+  padding: var(--space-large) var(--space-screen-margin);
+  animation: page-in var(--motion-sheet);
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: none; }
+}
+.onboarding__emoji { font-size: 48px; line-height: 1; }
+.onboarding__heading { display: flex; flex-direction: column; gap: var(--space-small); }
+.onboarding__title { font: var(--font-title); color: var(--color-text-primary); }
+.onboarding__body { font: var(--font-callout); color: var(--color-text-secondary); }
+.onboarding__bullet { display: flex; align-items: flex-start; gap: var(--space-small); font: var(--font-callout); color: var(--color-text-secondary); }
+.onboarding__bullet .emoji { font-size: 16px; line-height: 1.35; }
+
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-small);
+}
+.starter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+  height: 46px;
+  padding: 0 var(--space-small);
+  border-radius: var(--radius-chip);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font: var(--font-caption);
+  transition: background var(--motion-value), color var(--motion-value);
+}
+.starter--selected { color: var(--color-text-on-accent); }
+.starter__name { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
+
+.cash-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-small);
+  padding: var(--space-large) 0;
+}
+.cash-card__hint { font: var(--font-caption); color: var(--color-accent); }

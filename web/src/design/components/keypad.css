@@ -1,0 +1,50 @@
+/* BudgetKeypad + KeypadDisplay */
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-medium);
+  width: 100%;
+}
+.keypad__chips {
+  display: flex;
+  gap: var(--space-small);
+}
+.keypad__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-small);
+}
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: var(--radius-chip);
+  font: var(--font-keypad-key);
+  color: var(--color-text-primary);
+  background: var(--color-surface-muted);
+  transition: transform 80ms ease, filter 80ms ease;
+}
+.key:active { transform: scale(0.96); filter: brightness(0.94); }
+.key--operation {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.keypad-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-tight);
+  width: 100%;
+  text-align: center;
+}
+.keypad-display__expression {
+  font: var(--font-callout);
+  color: var(--color-text-secondary);
+}
+.keypad-display__caption {
+  font: var(--font-caption);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

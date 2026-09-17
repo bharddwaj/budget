@@ -1,0 +1,158 @@
+/* Shared component styles, one block per component, matching Design/Components in the iOS app. */
+
+/* CardSurface */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: var(--card-padding, var(--space-medium));
+  background: var(--card-background, var(--color-surface));
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* PillButton */
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-small);
+  width: 100%;
+  height: 54px;
+  border-radius: var(--radius-pill);
+  font: var(--font-headline);
+  transition: opacity var(--motion-value), transform 120ms ease;
+}
+.pill:active:not(:disabled) { transform: scale(0.98); }
+.pill:disabled { opacity: 0.45; }
+.pill--primary { background: var(--color-accent); color: var(--color-text-on-accent); }
+.pill--secondary { background: var(--color-accent-soft); color: var(--color-accent); }
+.pill--quiet { background: transparent; color: var(--color-accent); }
+.pill--destructive { background: var(--color-negative); color: var(--color-text-on-accent); }
+
+/* ChipButton */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-tight);
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  font: var(--font-caption);
+  color: var(--chip-tint, var(--color-accent));
+  background: color-mix(in srgb, var(--chip-tint, var(--color-accent)) 14%, transparent);
+  white-space: nowrap;
+  transition: background var(--motion-value), color var(--motion-value);
+}
+.chip--selected {
+  color: var(--color-text-on-accent);
+  background: var(--chip-tint, var(--color-accent));
+}
+
+/* EmojiBadge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--badge-tint, var(--color-accent)) 16%, transparent);
+}
+
+/* SectionHeader */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+  width: 100%;
+}
+.section-header__title {
+  font: var(--font-section-label);
+  letter-spacing: var(--letter-spacing-section);
+  text-transform: uppercase;
+  color: var(--section-tint, var(--color-text-secondary));
+}
+.section-header__trailing {
+  margin-left: auto;
+  font: var(--font-caption);
+  color: var(--color-text-secondary);
+}
+
+/* ProgressTrack */
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--track-height, 8px);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  overflow: hidden;
+}
+.track__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: var(--radius-pill);
+  background: var(--track-tint, var(--color-accent));
+  transition: width var(--motion-value);
+}
+
+/* AmountText */
+.amount {
+  font-variant-numeric: tabular-nums;
+  transition: color var(--motion-value);
+}
+
+/* Row helpers used by lists inside cards */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-medium);
+  width: 100%;
+  text-align: left;
+}
+.row--tappable:active { opacity: 0.7; }
+.row__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.row__title {
+  font: var(--font-body);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row__subtitle {
+  font: var(--font-caption);
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row__trailing { margin-left: auto; flex: none; }
+
+/* Key/value rows (detail purpose cards, review totals) */
+.kv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-medium);
+  padding: var(--space-small) 0;
+}
+.kv__label { font: var(--font-callout); color: var(--color-text-secondary); }
+.kv__value { font: var(--font-headline); color: var(--color-text-primary); text-align: right; }
+
+/* Selectable option rows with a check circle (frequency, stuffing method) */
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-medium);
+  width: 100%;
+  padding: var(--space-small) 0;
+  text-align: left;
+}
+.option-row__check { margin-left: auto; flex: none; display: flex; }
+.option-row__check--on { color: var(--color-accent); }
+.option-row__check--off { color: var(--color-separator); }
