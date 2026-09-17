@@ -1,0 +1,13 @@
+.streak { display: flex; align-items: center; gap: var(--space-large); }
+.streak__label { font: var(--font-caption); color: var(--color-text-secondary); }
+.streak__count { font: var(--font-hero); color: var(--color-text-primary); }
+.streak__info { margin-left: auto; color: var(--color-accent); display: inline-flex; padding: 6px; }
+
+.legend-dots { display: flex; gap: var(--space-medium); width: 100%; }
+.legend-dot { display: flex; align-items: center; gap: 5px; font: var(--font-caption); color: var(--color-text-secondary); }
+.legend-dot__swatch { width: 8px; height: 8px; border-radius: 50%; }
+
+.next-budget { display: flex; align-items: center; gap: var(--space-medium); }
+.next-budget__emoji { font-size: 26px; }
+.next-budget__label { font: var(--font-caption); color: var(--color-text-secondary); }
+.next-budget__date { font: var(--font-headline); color: var(--color-text-primary); }

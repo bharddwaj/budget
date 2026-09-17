@@ -1,0 +1,12 @@
+.headline { display: flex; flex-direction: column; align-items: center; gap: var(--space-medium); text-align: center; }
+.headline__label { font: var(--font-caption); color: var(--color-text-secondary); }
+.headline__row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar { display: grid; grid-template-columns: 120px 1fr auto; align-items: center; gap: var(--space-small); height: 26px; }
+.bar__label { font: var(--font-caption); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar__track { height: 18px; border-radius: 6px; background: var(--color-surface-muted); overflow: hidden; }
+.bar__fill { height: 100%; border-radius: 6px; transition: width var(--motion-value); }
+
+.goal { display: flex; flex-direction: column; gap: var(--space-tight); }
+.goal__row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-small); }
