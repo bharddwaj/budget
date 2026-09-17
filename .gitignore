@@ -26,3 +26,8 @@ Packages/*/\.build/
 .vscode/
 *.swp
 *~
+
+# Web app
+web/node_modules/
+web/dist/
+web/dev-dist/

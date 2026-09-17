@@ -1,0 +1,116 @@
+/*
+ * Design tokens — a 1:1 transcription of the iOS app's Palette.swift and
+ * Theme.swift so the two apps share a look. Light values live on :root; dark
+ * values are applied both by the explicit theme attribute and by the system
+ * preference when the user has chosen "Match my phone".
+ */
+
+:root {
+  /* Palette — light */
+  --color-background: #faf7fb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1ebf7;
+  --color-separator: #e7dfef;
+  --color-text-primary: #2e2440;
+  --color-text-secondary: #6f6683;
+  --color-text-on-accent: #ffffff;
+  --color-accent: #8473d4;
+  --color-accent-soft: #e9e4fa;
+  --color-variable: #ee8fae;
+  --color-fixed: #62b6e0;
+  --color-savings: #62c08c;
+  --color-positive: #3e9e6e;
+  --color-negative: #db4f68;
+  --color-warning: #e0983e;
+  --color-spend-free: #6fcf97;
+  --color-spend-broken: #eb8a90;
+
+  /* Spacing (Theme.Spacing) */
+  --space-tight: 6px;
+  --space-small: 10px;
+  --space-medium: 16px;
+  --space-large: 22px;
+  --space-section: 32px;
+  --space-screen-margin: 20px;
+
+  /* Radius (Theme.Radius) */
+  --radius-chip: 12px;
+  --radius-card: 22px;
+  --radius-sheet: 28px;
+  --radius-pill: 999px;
+
+  /* Type (Theme.Font) — rounded system face where available */
+  --font-family:
+    ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  --font-hero: 700 44px/1.1 var(--font-family);
+  --font-amount: 700 32px/1.15 var(--font-family);
+  --font-title: 700 26px/1.2 var(--font-family);
+  --font-headline: 600 18px/1.3 var(--font-family);
+  --font-body: 500 16px/1.35 var(--font-family);
+  --font-callout: 500 15px/1.35 var(--font-family);
+  --font-caption: 500 13px/1.35 var(--font-family);
+  --font-section-label: 700 12px/1.3 var(--font-family);
+  --font-keypad-key: 500 28px/1 var(--font-family);
+  --letter-spacing-section: 0.8px;
+
+  /* Elevation (Theme.Shadow.card) */
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  /* Motion (Theme.Motion) — springs approximated with an overshoot curve */
+  --motion-value: 350ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  --motion-sheet: 420ms cubic-bezier(0.22, 0.9, 0.28, 1);
+
+  /* Layout */
+  --tab-bar-height: 56px;
+  --nav-bar-height: 52px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-background: #141019;
+    --color-surface: #1e1826;
+    --color-surface-muted: #2a2235;
+    --color-separator: #342b41;
+    --color-text-primary: #f4f0f8;
+    --color-text-secondary: #a79fb5;
+    --color-text-on-accent: #1a1322;
+    --color-accent: #a898e5;
+    --color-accent-soft: #2e2647;
+    --color-variable: #f09db9;
+    --color-fixed: #77c3e9;
+    --color-savings: #7acf9f;
+    --color-positive: #63c795;
+    --color-negative: #f07c90;
+    --color-warning: #edb365;
+    --color-spend-free: #5fb585;
+    --color-spend-broken: #c9666d;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-background: #141019;
+  --color-surface: #1e1826;
+  --color-surface-muted: #2a2235;
+  --color-separator: #342b41;
+  --color-text-primary: #f4f0f8;
+  --color-text-secondary: #a79fb5;
+  --color-text-on-accent: #1a1322;
+  --color-accent: #a898e5;
+  --color-accent-soft: #2e2647;
+  --color-variable: #f09db9;
+  --color-fixed: #77c3e9;
+  --color-savings: #7acf9f;
+  --color-positive: #63c795;
+  --color-negative: #f07c90;
+  --color-warning: #edb365;
+  --color-spend-free: #5fb585;
+  --color-spend-broken: #c9666d;
+  color-scheme: dark;
+}

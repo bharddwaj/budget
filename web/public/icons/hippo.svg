@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDE7F0"/>
+      <stop offset="1" stop-color="#F6C9DE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g id="hippo">
+    <ellipse cx="512" cy="900" rx="300" ry="34" fill="#E5AECB" opacity="0.6"/>
+    <circle cx="290" cy="290" r="90" fill="#9C86D6"/>
+    <circle cx="734" cy="290" r="90" fill="#9C86D6"/>
+    <circle cx="290" cy="298" r="50" fill="#F3B9D2"/>
+    <circle cx="734" cy="298" r="50" fill="#F3B9D2"/>
+    <path d="M 512 190 C 690 190 790 300 800 420 C 860 470 860 640 800 730 C 740 820 620 850 512 850 C 404 850 284 820 224 730 C 164 640 164 470 224 420 C 234 300 334 190 512 190 Z" fill="#AD9AE0"/>
+    <ellipse cx="512" cy="640" rx="268" ry="172" fill="#C9B8F2"/>
+    <ellipse cx="296" cy="560" rx="50" ry="34" fill="#F5A3C7" opacity="0.9"/>
+    <ellipse cx="728" cy="560" rx="50" ry="34" fill="#F5A3C7" opacity="0.9"/>
+    <ellipse cx="412" cy="430" rx="42" ry="48" fill="#FFFFFF"/>
+    <ellipse cx="612" cy="430" rx="42" ry="48" fill="#FFFFFF"/>
+    <circle cx="420" cy="438" r="27" fill="#3A2E5C"/>
+    <circle cx="620" cy="438" r="27" fill="#3A2E5C"/>
+    <circle cx="430" cy="426" r="9" fill="#FFFFFF"/>
+    <circle cx="630" cy="426" r="9" fill="#FFFFFF"/>
+    <ellipse cx="432" cy="590" rx="34" ry="24" fill="#6E5AA8"/>
+    <ellipse cx="592" cy="590" rx="34" ry="24" fill="#6E5AA8"/>
+    <path d="M 388 690 Q 512 786 636 690" stroke="#6E5AA8" stroke-width="18" fill="none" stroke-linecap="round"/>
+    <rect x="454" y="700" width="40" height="52" rx="10" fill="#FFFFFF"/>
+    <rect x="530" y="700" width="40" height="52" rx="10" fill="#FFFFFF"/>
+    <circle cx="800" cy="740" r="90" fill="#FFD166" stroke="#F4A93B" stroke-width="14"/>
+    <text x="800" y="778" font-family="Helvetica, Arial, sans-serif" font-size="112" font-weight="bold" text-anchor="middle" fill="#B36B00">$</text>
+  </g>
+</svg>
