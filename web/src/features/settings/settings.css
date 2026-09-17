@@ -1,0 +1,17 @@
+.settings-group { display: flex; flex-direction: column; gap: var(--space-small); }
+.settings-group__title { padding: 0 var(--space-medium); font: var(--font-callout); color: var(--color-text-secondary); }
+.settings-group__footer { padding: 0 var(--space-medium); font: var(--font-caption); color: var(--color-text-secondary); }
+.settings-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-medium); min-height: 44px; padding: 6px 0; }
+.settings-row__label { font: var(--font-body); color: var(--color-text-primary); }
+.settings-row__value { font: var(--font-body); color: var(--color-text-secondary); }
+.settings-row--button { width: 100%; text-align: left; }
+.settings-row--button .settings-row__label { color: var(--color-accent); }
+.settings-row--warning .settings-row__label { color: var(--color-warning); }
+.settings-row--destructive .settings-row__label { color: var(--color-negative); }
+
+.stepper { display: inline-flex; align-items: stretch; border-radius: 8px; background: var(--color-surface-muted); overflow: hidden; }
+.stepper__button { width: 44px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font: var(--font-headline); color: var(--color-text-primary); }
+.stepper__button:disabled { opacity: 0.35; }
+.stepper__divider { width: 1px; background: var(--color-separator); margin: 6px 0; }
+
+.symbol-input { width: 80px; border: 0; background: transparent; text-align: right; font: var(--font-body); color: var(--color-text-primary); outline: none; }

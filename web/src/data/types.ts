@@ -95,7 +95,7 @@ export interface SettingsRecord {
   currencyDecimals: number
   currencyGroupingSeparator: string
   currencyDecimalSeparator: string
-  /** A PIN gate stands in for the iOS app's Face ID lock. */
+  /** Reserved for the account/sync step; unused while the app is local-only. */
   lockEnabled: boolean
   pinHash: string | null
   pinSalt: string | null

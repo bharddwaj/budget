@@ -252,3 +252,26 @@ Device Management ▸ Trust.
 3. Sort envelope lists by type (§7).
 4. Optionally add `DEVELOPMENT_TEAM` to `project.yml`/`.pbxproj` once the user
    has added an Apple ID, so device builds work from the command line.
+
+---
+
+## 12. Web app (added 2026-09-16/17)
+
+A React + TypeScript + Vite PWA under `web/`, deployed to GitHub Pages at
+https://bharddwaj.github.io/budget/ by `.github/workflows/deploy-web.yml`.
+Decisions: local-first IndexedDB via Dexie behind a `BudgetRepository`
+interface designed for a later Firestore implementation; hash router; plain
+CSS tokens transcribed from Palette/Theme; hand-rolled SVG charts; no PIN or
+lock (user wants real email/password accounts, which belong to the Firebase
+step). Screens, strings and behaviours mirror the iOS app; two deliberate
+improvements over iOS: envelope lists are always ordered by type, and "Start
+fresh" restarts spend-free tracking today instead of clearing it.
+
+Environment gotchas on this Mac: Homebrew's node is broken (ICU) and the
+Xcode license is unaccepted, so use `~/.local/node/bin` (Node 22.14) and
+`/Library/Developer/CommandLineTools/usr/bin/git`. `.claude/launch.json`
+already does this for the dev server.
+
+Next: Firebase Auth (email/password) + Firestore sync — the user must create
+the Firebase project; then implement `FirestoreRepository` per
+`web/src/data/repository.ts`, a sign-in screen, and "sign in to sync".

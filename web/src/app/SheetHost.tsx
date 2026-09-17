@@ -3,6 +3,7 @@ import { Sheet } from '../design/components/Sheet'
 import { ArrangeEnvelopesSheet } from '../features/envelopes/ArrangeEnvelopesSheet'
 import { EnvelopeEditorSheet } from '../features/envelopes/EnvelopeEditorSheet'
 import { TransferSheet } from '../features/envelopes/TransferSheet'
+import { SettingsView } from '../features/settings/SettingsView'
 import { TransactionEditorSheet } from '../features/transactions/TransactionEditorSheet'
 import { useAppRoute } from './AppRoute'
 
@@ -31,6 +32,9 @@ export function SheetHost() {
       </Sheet>
       <Sheet isOpen={state.isArrangingEnvelopes} onDismiss={route.closeArrange}>
         {state.isArrangingEnvelopes ? <ArrangeEnvelopesSheet onClose={route.closeArrange} /> : null}
+      </Sheet>
+      <Sheet isOpen={state.isShowingSettings} onDismiss={route.closeSettings}>
+        {state.isShowingSettings ? <SettingsView onClose={route.closeSettings} /> : null}
       </Sheet>
     </>
   )

@@ -114,3 +114,30 @@ light/dark themes · customisable currency · start fresh / delete all data.
 5. Overview tab → today is green; the day you just spent on an off-limits
    envelope is red, and the streak reflects it.
 6. Settings ▸ turn on Face ID, background and reopen → the lock screen appears.
+
+---
+
+## Web app (PWA)
+
+The same app, rebuilt for the browser so it can be installed from a link
+with no signing or expiry — Safari ▸ Share ▸ **Add to Home Screen**.
+
+**Live:** https://bharddwaj.github.io/budget/
+
+Everything is local-first: data lives in the browser's IndexedDB. Accounts and
+cross-device sync (Firebase Auth + Firestore) are the next step.
+
+```bash
+cd web
+npm install
+npm run dev        # http://localhost:5173/budget/
+npm test           # vitest — domain + store tests
+npm run typecheck
+npm run build      # → web/dist
+```
+
+Pushing to `main` deploys `web/` to GitHub Pages via
+`.github/workflows/deploy-web.yml` (repo Settings ▸ Pages ▸ Source must be
+"GitHub Actions"). Layout: `web/src/domain` is a port of `BudgetKit`,
+`web/src/data` is the storage layer (records → repository → Dexie), and
+`web/src/features` mirrors `BudgetBestie/Features`.
