@@ -1,6 +1,7 @@
 import { createHashRouter } from 'react-router'
 import { HomeView } from '../features/home/HomeView'
 import { TransactionsView } from '../features/transactions/TransactionsView'
+import { EnvelopeDetailView } from '../features/envelopes/EnvelopeDetailView'
 import { MainTabView } from './MainTabView'
 
 function Placeholder({ title }: { title: string }) {
@@ -34,7 +35,7 @@ export const router = createHashRouter([
       { path: 'money', Component: TransactionsView },
       { path: 'overview', element: <Placeholder title="Overview" /> },
       { path: 'recap', element: <Placeholder title="Your recap" /> },
-      { path: 'envelopes/:id', element: <Placeholder title="Envelope" /> },
+      { path: 'envelopes/:id', Component: EnvelopeDetailView },
     ],
   },
 ])
